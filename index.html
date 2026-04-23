@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KBHAZ | 生于自然，蕴力于内</title>
+    <!-- Use a more reliable Tailwind CDN or specify version -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Base styles */
+        :root {
+            --bg-color: #F5F2ED;
+            --text-color: #1C1917;
+            --accent-color: #788C5D;
+        }
+        body {
+            font-family: 'Inter', 'Noto Serif SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+        }
+        .font-serif-brand {
+            font-family: 'Noto Serif SC', 'Georgia', serif;
+        }
+        /* Fallback for Tailwind classes if CDN fails */
+        .px-8 { padding-left: 2rem; padding-right: 2rem; }
+        .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+        .max-w-7xl { max-width: 80rem; margin-left: auto; margin-right: auto; }
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+        .tracking-widest { letter-spacing: 0.1em; }
+        .font-medium { font-weight: 500; }
+        .hidden { display: none; }
+        @media (min-width: 768px) {
+            .md\:flex { display: flex; }
+        }
+    </style>
+</head>
+<body class="text-[#1C1917] antialiased">
+
+    <!-- Navigation -->
+    <nav class="flex items-center justify-between px-8 py-6 max-w-7xl mx-auto">
+        <div class="text-2xl font-serif-brand tracking-widest font-medium">
+            KBHAZ
+        </div>
+        <div class="hidden md:flex space-x-12 text-sm font-medium tracking-wide uppercase">
+            <a href="#" class="hover:opacity-60 transition-opacity">首页</a>
+            <a href="#" class="hover:opacity-60 transition-opacity">品牌故事</a>
+            <a href="#" class="hover:opacity-60 transition-opacity">系列展示</a>
+            <a href="#" class="hover:opacity-60 transition-opacity">环保承诺</a>
+        </div>
+        <div>
+            <a href="#" class="text-sm font-medium border-b border-[#1C1917] pb-1 hover:opacity-50 transition-all">
+                联系我们
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[85vh] flex items-center overflow-hidden px-8">
+        <!-- Background decorative blur -->
+        <div class="absolute top-1/4 right-0 w-96 h-96 bg-[#788C5D]/10 rounded-full blur-[100px] -z-10"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-[#B0A493]/20 rounded-full blur-[80px] -z-10"></div>
+
+        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <!-- Text Content -->
+            <div class="order-2 lg:order-1">
+                <span class="inline-block px-3 py-1 text-xs font-semibold tracking-widest text-[#788C5D] uppercase bg-[#788C5D]/10 rounded-full mb-8">
+                    Sustainable · Minimalist · Elegant
+                </span>
+                <h1 class="text-5xl md:text-7xl font-serif-brand font-light leading-tight mb-8">
+                    生于自然<br/>
+                    <span class="font-medium">蕴力于内</span>
+                </h1>
+                <p class="max-w-md text-lg text-[#1C1917] font-light leading-relaxed mb-12">
+                    KBHAZ 致力于将可持续材料与现代简约美学结合，为温柔且坚定的灵魂打造独一无二的鞋履与服饰。
+                </p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-8">
+                    <button class="px-10 py-4 bg-[#1C1917] text-[#F5F2ED] text-sm font-medium tracking-wide rounded-sm hover:opacity-90 transition-all">
+                        探索系列
+                    </button>
+                    <button class="px-10 py-4 border border-[#1C1917] text-[#1C1917] text-sm font-medium tracking-wide rounded-sm hover:bg-[#1C1917]/5 transition-all">
+                        品牌故事
+                    </button>
+                </div>
+            </div>
+
+            <!-- Image Area -->
+            <div class="order-1 lg:order-2 relative">
+                <div class="aspect-[3/4] w-full bg-[#E5E1DA] rounded-sm shadow-sm overflow-hidden group">
+                    <!-- 占位图建议：展示一张极简、带有大地色调的自然环境下的女鞋或服饰摄影 -->
+                    <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=1000&auto=format&fit=crop" 
+                         alt="KBHAZ Sustainable Collection" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-black/5"></div>
+                </div>
+                <!-- Abstract Badge -->
+                <div class="absolute -bottom-6 -left-6 bg-white/80 backdrop-blur-md p-8 shadow-xl hidden md:block">
+                    <p class="text-[10px] tracking-widest uppercase text-[#788C5D] font-bold mb-2">Philosophy</p>
+                    <p class="text-xl font-serif-brand italic leading-tight">“减法，是为了让<br/>内核更清晰”</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footnote -->
+    <div class="max-w-7xl mx-auto px-8 py-12 flex justify-between items-center opacity-30 text-[10px] tracking-[0.2em] uppercase">
+        <span>© 2026 KBHAZ USA</span>
+        <span>Eco-Conscious Label</span>
+    </div>
+
+</body>
+</html>
