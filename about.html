@@ -1,1 +1,89 @@
- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story | KBHAZ</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #F5F2ED;
+            --text-main: #1C1917;
+            --accent-eco: #788C5D;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            margin: 0;
+        }
+        .font-serif-luxury { font-family: 'Playfair Display', serif; }
+        [lang-content] { display: none; }
+        .lang-active { display: block; }
+        span.lang-active { display: inline; }
+        .bg-moss { background-color: var(--accent-eco); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header (Same as Index) -->
+    <header class="bg-[#F5F2ED]/90 backdrop-blur-md border-b border-black/5">
+        <div class="max-w-[1440px] mx-auto px-6 md:px-10 py-6 flex items-center justify-between">
+            <div class="flex items-center space-x-6">
+                <button id="lang-toggle" class="text-[9px] tracking-widest uppercase border border-black/10 px-2 py-1 hover:bg-black/5 transition-all">
+                    EN / 中文
+                </button>
+            </div>
+            <div class="absolute left-1/2 transform -translate-x-1/2 text-center">
+                <a href="index.html" class="text-3xl md:text-4xl font-serif-luxury tracking-[0.15em] font-medium block">KBHAZ</a>
+            </div>
+            <div class="flex items-center space-x-6 text-[11px] tracking-widest uppercase font-medium">
+                <a href="contact.html" class="hidden md:block hover:opacity-50 transition-opacity">
+                    <span lang-content="en" class="lang-active">Contact</span>
+                    <span lang-content="zh">联系我们</span>
+                </a>
+            </div>
+        </div>
+        <nav class="hidden md:flex justify-center space-x-10 py-4 text-[11px] tracking-[0.18em] uppercase font-medium border-t border-black/5">
+            <a href="index.html" class="hover:opacity-50"><span lang-content="en" class="lang-active">Home</span><span lang-content="zh">首页</span></a>
+            <a href="#" class="hover:opacity-50"><span lang-content="en" class="lang-active">Collections</span><span lang-content="zh">精选系列</span></a>
+            <a href="about.html" class="opacity-100 border-b border-black pb-0.5"><span lang-content="en" class="lang-active">Our Story</span><span lang-content="zh">品牌故事</span></a>
+        </nav>
+    </header>
+
+    <!-- Content -->
+    <main class="max-w-4xl mx-auto px-6 py-24 text-center">
+        <h1 class="text-5xl font-serif-luxury italic mb-12">
+            <span lang-content="en" class="lang-active">The Soul of KBHAZ</span>
+            <span lang-content="zh">KBHAZ 的内核</span>
+        </h1>
+        <div class="space-y-12 text-lg leading-relaxed text-gray-700 font-light">
+            <p>
+                <span lang-content="en" class="lang-active">KBHAZ was born from a singular vision: to create luxury that doesn't demand a compromise from the Earth. Our journey began in 2026, inspired by the resilient elegance of modern women.</span>
+                <span lang-content="zh">KBHAZ 诞生于一个纯粹的愿景：创造不以牺牲地球为代价的奢华。我们的旅程始于 2026 年，灵感源自现代女性坚韧而优雅的力量。</span>
+            </p>
+            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop" class="w-full grayscale opacity-80 py-10">
+            <p>
+                <span lang-content="en" class="lang-active">Every pair of high heels and every garment is a testament to conscious craftsmanship. We use eco-certified linens, recycled stone textures, and a zero-waste design philosophy.</span>
+                <span lang-content="zh">每一双高跟鞋、每一件成衣，都是对有意识工艺的见证。我们采用环保认证的亚麻、回收石材纹理，并秉持零浪费的设计哲学。</span>
+            </p>
+        </div>
+    </main>
+
+    <footer class="bg-white py-12 px-6 md:px-10 border-t border-black/5 text-center text-[10px] tracking-widest uppercase">
+        © 2026 KBHAZ USA. ALL RIGHTS RESERVED.
+    </footer>
+
+    <script>
+        const langToggle = document.getElementById('lang-toggle');
+        let currentLang = 'en';
+        langToggle.addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'zh' : 'en';
+            document.querySelectorAll('[lang-content]').forEach(el => {
+                el.classList.toggle('lang-active', el.getAttribute('lang-content') === currentLang);
+            });
+        });
+    </script>
+</body>
+</html>
