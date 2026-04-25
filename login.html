@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identification | KBHAZ</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --bg-primary: #F5F2ED; 
+            --text-main: #1C1917; 
+            --accent-eco: #788C5D; 
+        }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg-primary); 
+            color: var(--text-main); 
+            margin: 0; 
+            letter-spacing: 0.02em;
+        }
+        .font-serif-luxury { font-family: 'Playfair Display', serif; }
+        .input-minimal {
+            background-color: transparent;
+            border: none;
+            border-b: 1px solid rgba(28, 25, 23, 0.2);
+            padding: 1rem 0;
+            width: 100%;
+            font-size: 0.875rem;
+            transition: border-color 0.3s;
+        }
+        .input-minimal:focus {
+            outline: none;
+            border-bottom-color: var(--text-main);
+            ring: 0;
+        }
+        .btn-black {
+            background-color: var(--text-main);
+            color: white;
+            padding: 1.25rem;
+            width: 100%;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            transition: opacity 0.3s;
+        }
+        .btn-black:hover { opacity: 0.9; }
+        .btn-outline {
+            border: 1px solid var(--text-main);
+            padding: 1.25rem;
+            width: 100%;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .btn-outline:hover {
+            background-color: var(--text-main);
+            color: white;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header (Minimal for Login) -->
+    <header class="py-12 border-b border-black/5">
+        <div class="max-w-[1440px] mx-auto px-6 text-center">
+            <a href="index.html" class="text-4xl font-serif-luxury tracking-[0.2em] font-medium">KBHAZ</a>
+        </div>
+    </header>
+
+    <main class="max-w-xl mx-auto px-6 py-20">
+        <!-- Login Section -->
+        <section id="login-section" class="mb-24">
+            <h1 class="text-xs tracking-[0.4em] uppercase font-bold mb-12 text-center">Login</h1>
+            <form id="login-form" class="space-y-8">
+                <div>
+                    <label class="text-[10px] tracking-[0.2em] uppercase font-bold opacity-50">Email Address*</label>
+                    <input type="email" id="login-email" class="input-minimal" required>
+                </div>
+                <div id="password-field" class="hidden">
+                    <label class="text-[10px] tracking-[0.2em] uppercase font-bold opacity-50">Password*</label>
+                    <input type="password" id="login-password" class="input-minimal">
+                    <div class="mt-4 text-right">
+                        <a href="#" class="text-[9px] tracking-widest uppercase underline opacity-50">Forgot Password?</a>
+                    </div>
+                </div>
+                <button type="button" id="next-btn" class="btn-black">Next</button>
+                <button type="submit" id="signin-btn" class="btn-black hidden">Sign In</button>
+            </form>
+        </section>
+
+        <!-- Separator -->
+        <div class="w-full h-px bg-black/5 mb-24"></div>
+
+        <!-- Register Section -->
+        <section id="register-section">
+            <h2 class="text-xs tracking-[0.4em] uppercase font-bold mb-8 text-center">Create an Account</h2>
+            <p class="text-[11px] leading-relaxed opacity-60 text-center mb-10 px-10">
+                Join the KBHAZ community to access your personal dashboard, track your sustainable orders, and manage your Eco-Credits.
+            </p>
+            <button id="show-register-btn" class="btn-outline">Register</button>
+            
+            <!-- Registration Form (Hidden by default) -->
+            <form id="register-form" class="space-y-8 hidden mt-12">
+                <div>
+                    <label class="text-[10px] tracking-[0.2em] uppercase font-bold opacity-50">Full Name</label>
+                    <input type="text" class="input-minimal" required>
+                </div>
+                <div>
+                    <label class="text-[10px] tracking-[0.2em] uppercase font-bold opacity-50">Email Address</label>
+                    <input type="email" class="input-minimal" required>
+                </div>
+                <div>
+                    <label class="text-[10px] tracking-[0.2em] uppercase font-bold opacity-50">Create Password</label>
+                    <input type="password" class="input-minimal" required>
+                </div>
+                <button type="submit" class="btn-black">Create My Account</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="py-12 text-center text-[10px] tracking-widest uppercase opacity-40">
+        © 2026 KBHAZ USA. ALL RIGHTS RESERVED.
+    </footer>
+
+    <script>
+        const nextBtn = document.getElementById('next-btn');
+        const signinBtn = document.getElementById('signin-btn');
+        const passwordField = document.getElementById('password-field');
+        const loginEmail = document.getElementById('login-email');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+        const showRegisterBtn = document.getElementById('show-register-btn');
+
+        // Multi-step Login Logic (YSL Benchmark)
+        nextBtn.addEventListener('click', () => {
+            if (loginEmail.value.includes('@')) {
+                passwordField.classList.remove('hidden');
+                nextBtn.classList.add('hidden');
+                signinBtn.classList.remove('hidden');
+            } else {
+                alert('Please enter a valid email address.');
+            }
+        });
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Simulate Login
+            window.location.href = 'account.html';
+        });
+
+        // Toggle Register Form
+        showRegisterBtn.addEventListener('click', () => {
+            registerForm.classList.remove('hidden');
+            showRegisterBtn.classList.add('hidden');
+        });
+
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Account created! Welcome to KBHAZ.');
+            window.location.href = 'account.html';
+        });
+    </script>
+</body>
+</html>
