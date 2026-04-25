@@ -1,1 +1,136 @@
- <a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Center | KBHAZ</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-primary: #F5F2ED; --text-main: #1C1917; --accent-eco: #788C5D; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-primary); color: var(--text-main); margin: 0; }
+        .font-serif-luxury { font-family: 'Playfair Display', serif; }
+        [lang-content] { display: none; }
+        .lang-active { display: block; }
+        span.lang-active { display: inline; }
+        .fade-in { animation: fadeIn 0.8s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-[#F5F2ED]/90 backdrop-blur-md border-b border-black/5">
+        <div class="max-w-[1440px] mx-auto px-6 md:px-10 py-6 flex items-center justify-between">
+            <div class="absolute left-1/2 transform -translate-x-1/2 text-center">
+                <a href="index.html" class="text-3xl md:text-4xl font-serif-luxury tracking-[0.15em] font-medium block">KBHAZ</a>
+            </div>
+            <a href="index.html" class="text-[11px] tracking-widest uppercase font-medium hover:opacity-50">Logout / 退出</a>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6 py-20">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <!-- Sidebar / User Info -->
+            <div class="space-y-8">
+                <div class="border-b border-black/10 pb-8 text-center md:text-left">
+                    <h2 class="text-2xl font-serif-luxury italic mb-2">Welcome, Muse</h2>
+                    <p class="text-[10px] tracking-widest uppercase opacity-50">Linen Member · Joined April 2026</p>
+                </div>
+                <div class="bg-white p-8 space-y-4">
+                    <h3 class="text-[10px] tracking-widest uppercase font-bold">KBHAZ Eco-Credits</h3>
+                    <p class="text-4xl font-serif-luxury text-moss" id="points-display">5,200</p>
+                    <p class="text-[10px] italic opacity-60">Earned through conscious choices.</p>
+                </div>
+                
+                <!-- My Rewards Section -->
+                <div id="rewards-section" class="pt-8">
+                    <h3 class="text-[10px] tracking-widest uppercase font-bold mb-6 border-b border-black/10 pb-2">My Rewards / 我的礼品</h3>
+                    <div id="rewards-list" class="space-y-4">
+                        <p class="text-[10px] italic opacity-40">No rewards redeemed yet.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Panel -->
+            <div class="md:col-span-2 space-y-12">
+                <div>
+                    <h2 class="text-xl font-serif-luxury italic mb-8 border-b border-black pb-4">Exclusive Redemption / 积分兑换</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                        <!-- Product 1 -->
+                        <div class="group">
+                            <div class="aspect-square overflow-hidden bg-gray-50 mb-4">
+                                <img src="https://www.arezzo-store.com/cdn/shop/files/ARZUS_26_ATIV_SPRING_BANNERS_BLOCO.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            </div>
+                            <h4 class="text-[12px] tracking-widest uppercase mb-2">The Linen Tote</h4>
+                            <p class="text-[11px] font-bold text-moss mb-4">3,500 Credits</p>
+                            <button onclick="redeem(3500, 'The Linen Tote', 'https://www.arezzo-store.com/cdn/shop/files/ARZUS_26_ATIV_SPRING_BANNERS_BLOCO.jpg')" class="w-full border border-black py-3 text-[10px] tracking-widest uppercase font-bold hover:bg-black hover:text-white transition-all">Redeem Now</button>
+                        </div>
+                        <!-- Product 2 -->
+                        <div class="group">
+                            <div class="aspect-square overflow-hidden bg-gray-50 mb-4">
+                                <img src="https://www.arezzo-store.com/cdn/shop/files/ARZUS_26_ATIV_SPRING_BANNERS_BLOCO3.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            </div>
+                            <h4 class="text-[12px] tracking-widest uppercase mb-2">Silk Scarf (Moss)</h4>
+                            <p class="text-[11px] font-bold text-moss mb-4">1,800 Credits</p>
+                            <button onclick="redeem(1800, 'Silk Scarf (Moss)', 'https://www.arezzo-store.com/cdn/shop/files/ARZUS_26_ATIV_SPRING_BANNERS_BLOCO3.jpg')" class="w-full border border-black py-3 text-[10px] tracking-widest uppercase font-bold hover:bg-black hover:text-white transition-all">Redeem Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let points = parseInt(localStorage.getItem('kbhaz_points') || '5200');
+        let rewards = JSON.parse(localStorage.getItem('kbhaz_rewards') || '[]');
+        
+        const pointsDisplay = document.getElementById('points-display');
+        const rewardsList = document.getElementById('rewards-list');
+
+        function updateUI() {
+            pointsDisplay.innerText = points.toLocaleString();
+            
+            if (rewards.length === 0) {
+                rewardsList.innerHTML = '<p class="text-[10px] italic opacity-40">No rewards redeemed yet.</p>';
+            } else {
+                rewardsList.innerHTML = rewards.map((item, index) => `
+                    <div class="flex items-center space-x-4 bg-white p-3 border border-black/5 fade-in">
+                        <img src="\${item.img}" class="w-10 h-10 object-cover grayscale">
+                        <div class="flex-1">
+                            <p class="text-[9px] font-bold uppercase">\${item.name}</p>
+                            <p class="text-[8px] tracking-tighter opacity-50">\${item.date}</p>
+                        </div>
+                        <span class="text-[8px] uppercase font-bold text-moss">Processing</span>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function redeem(cost, name, img) {
+            if (points >= cost) {
+                const confirmRedeem = confirm(\`Confirm redemption of \${name} for \${cost} credits?\`);
+                if (!confirmRedeem) return;
+
+                points -= cost;
+                const newReward = {
+                    name: name,
+                    img: img,
+                    date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+                    status: 'Processing'
+                };
+                rewards.unshift(newReward); 
+                
+                localStorage.setItem('kbhaz_points', points);
+                localStorage.setItem('kbhaz_rewards', JSON.stringify(rewards));
+                
+                updateUI();
+                alert(\`Success! Your \${name} is being prepared. Our concierge will contact you shortly.\`);
+            } else {
+                alert('Insufficient Eco-Credits. Continue your sustainable journey to earn more.');
+            }
+        }
+
+        updateUI();
+    </script>
+</body>
+</html>
